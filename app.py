@@ -10,11 +10,11 @@ import plotly.graph_objs as go
 
 ###### Define your variables #####
 tabtitle = 'Titanic!'
-color1='#92A5E8'
-color2='#8E44AD'
-color3='#FFC300'
+color1='#F7CAC9'
+color2='#FF6F61'
+color3='#34568B'
 sourceurl = 'https://www.kaggle.com/c/titanic'
-githublink = 'https://github.com/plotly-dash-apps/304-titanic-dropdown'
+githublink = 'https://github.com/astever31/304-titanic-dropdown'
 
 
 ###### Import a dataframe #######
