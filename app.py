@@ -9,19 +9,20 @@ import plotly.graph_objs as go
 
 
 ###### Define your variables #####
-tabtitle = 'Titanic!'
+tabtitle = 'Elections'
 color1='#F7CAC9'
 color2='#FF6F61'
 color3='#34568B'
+#colors = [color1,color2]
 sourceurl = 'https://www.kaggle.com/c/titanic'
 githublink = 'https://github.com/astever31/304-titanic-dropdown'
 
 
 ###### Import a dataframe #######
-df = pd.read_csv("https://raw.githubusercontent.com/austinlasseter/plotly_dash_tutorial/master/00%20resources/titanic.csv")
-df['Female']=df['Sex'].map({'male':0, 'female':1})
-df['Cabin Class'] = df['Pclass'].map({1:'first', 2: 'second', 3:'third'})
-variables_list=['Survived', 'Female', 'Fare', 'Age']
+df = pd.read_csv("https://raw.githubusercontent.com/plotly/datasets/master/election.csv")
+#df['Female']=df['Sex'].map({'male':0, 'female':1})
+#df['Cabin Class'] = df['Pclass'].map({1:'first', 2: 'second', 3:'third'})
+variables_list=['total', 'Coderre', 'Bergeron', 'Joly']
 
 ########### Initiate the app
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
@@ -49,14 +50,20 @@ app.layout = html.Div([
 @app.callback(Output('display-value', 'figure'),
               [Input('dropdown', 'value')])
 def display_value(continuous_var):
-    grouped_mean=df.groupby(['Cabin Class', 'Embarked'])[continuous_var].mean()
-    results=pd.DataFrame(grouped_mean)
+    #grouped_mean=df.groupby(['Cabin Class', 'Embarked'])[continuous_var].mean()
+    #results=pd.DataFrame(grouped_mean)
     # Create a grouped bar chart
+    fig = px.bar(df, x='district', y=df.loc['first'][continuous_var], color='winner_won', text="winner", # marker_color=colors #orientation='h',
+             #hover_data=["tip", "size"],
+             height=1000,
+             title='Election')
+    """
     mydata1 = go.Bar(
         x=results.loc['first'].index,
         y=results.loc['first'][continuous_var],
         name='First Class',
         marker=dict(color=color1)
+    df = px.data.medals_long()
     )
     mydata2 = go.Bar(
         x=results.loc['second'].index,
@@ -73,11 +80,12 @@ def display_value(continuous_var):
 
     mylayout = go.Layout(
         title='Grouped bar chart',
-        xaxis = dict(title = 'Port of Embarkation'), # x-axis label
+        xaxis = dict(title = 'Election District'), # x-axis label
         yaxis = dict(title = str(continuous_var)), # y-axis label
 
     )
     fig = go.Figure(data=[mydata1, mydata2, mydata3], layout=mylayout)
+    """
     return fig
 
 
