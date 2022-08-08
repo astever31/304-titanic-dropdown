@@ -4,7 +4,7 @@ from dash import html
 from dash import dcc
 from dash.dependencies import Input, Output, State
 import pandas as pd
-import plotly.express as px
+#import plotly.express as px
 import plotly as py
 import plotly.graph_objs as go
 
@@ -54,18 +54,17 @@ def display_value(continuous_var):
     #grouped_mean=df.groupby(['Cabin Class', 'Embarked'])[continuous_var].mean()
     #results=pd.DataFrame(grouped_mean)
     # Create a grouped bar chart
-    fig = px.bar(df, x='district', y=df.loc['first'][continuous_var], color='winner_won', text="winner", # marker_color=colors #orientation='h',
+    #fig = px.bar(df, x='district', y=df.loc['first'][continuous_var], color='winner_won', text="winner", # marker_color=colors #orientation='h',
              #hover_data=["tip", "size"],
-             height=1000,
-             title='Election')
-    """
+      #       height=1000,
+     #        title='Election')
     mydata1 = go.Bar(
-        x=results.loc['first'].index,
-        y=results.loc['first'][continuous_var],
-        name='First Class',
+        x=df['district'],
+        y=df.[continuous_var],
         marker=dict(color=color1)
-    df = px.data.medals_long()
+    #df = px.data.medals_long()
     )
+    """
     mydata2 = go.Bar(
         x=results.loc['second'].index,
         y=results.loc['second'][continuous_var],
@@ -78,6 +77,7 @@ def display_value(continuous_var):
         name='Third Class',
         marker=dict(color=color3)
     )
+    """
 
     mylayout = go.Layout(
         title='Grouped bar chart',
@@ -85,8 +85,8 @@ def display_value(continuous_var):
         yaxis = dict(title = str(continuous_var)), # y-axis label
 
     )
-    fig = go.Figure(data=[mydata1, mydata2, mydata3], layout=mylayout)
-    """
+    
+    fig = go.Figure(data=mydata1, layout=mylayout)
     return fig
 
 
