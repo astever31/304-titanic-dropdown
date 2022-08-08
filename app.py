@@ -60,7 +60,7 @@ def display_value(continuous_var):
      #        title='Election')
     mydata1 = go.Bar(
         x=df['district'],
-        y=df.[continuous_var],
+        y=df[continuous_var],
         marker=dict(color=color1)
     #df = px.data.medals_long()
     )
