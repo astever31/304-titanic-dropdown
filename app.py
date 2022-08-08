@@ -14,8 +14,9 @@ tabtitle = 'Elections'
 color1='#F7CAC9'
 color2='#FF6F61'
 color3='#34568B'
-#colors = [color1,color2]
-sourceurl = 'https://www.kaggle.com/c/titanic'
+color4='#6C5B7B'
+colors = [color1,color2,color3,color4]
+sourceurl = 'https://github.com/plotly/datasets/blob/master/election.csv'
 githublink = 'https://github.com/astever31/304-titanic-dropdown'
 
 
@@ -61,10 +62,20 @@ def display_value(continuous_var):
     mydata1 = go.Bar(
         x=df['district'],
         y=df[continuous_var],
-        marker=dict(color=color1)
+        marker=dict(color=colors[variables_list.index(continuous_var)])
     #df = px.data.medals_long()
     )
     """
+    mydata2 = go.Bar(
+        x=df['district'],
+        y=df[continuous_var],
+        marker=dict(color=color2)
+    )
+    mydata3 = go.Bar(
+        x=df['district'],
+        y=df[continuous_var],
+        marker=dict(color=color3)
+    )
     mydata2 = go.Bar(
         x=results.loc['second'].index,
         y=results.loc['second'][continuous_var],
@@ -79,8 +90,8 @@ def display_value(continuous_var):
     )
     """
 
-    mylayout = go.Layout(
-        title='Grouped bar chart',
+    mylayout = go.Layout(#barmode = 'stack',
+        title='Candidate votes by County',
         xaxis = dict(title = 'Election District'), # x-axis label
         yaxis = dict(title = str(continuous_var)), # y-axis label
 
